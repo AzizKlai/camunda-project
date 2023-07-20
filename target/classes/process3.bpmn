@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.12.1">
+  <bpmn:process id="demande-process" name="immatriculation" isExecutable="true">
+    <bpmn:extensionElements />
+    <bpmn:userTask id="Activity_1" name="fill in Basic infos" camunda:formKey="camunda-forms:/forms/basicInfo.form" camunda:candidateUsers="demo">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_1i24494</bpmn:incoming>
+      <bpmn:outgoing>Flow_0q16z7m</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0q16z7m" sourceRef="Activity_1" targetRef="Activity_2" />
+    <bpmn:userTask id="Activity_2" name="specifiy activity" camunda:formKey="camunda-forms:/forms/activity.form">
+      <bpmn:incoming>Flow_0q16z7m</bpmn:incoming>
+      <bpmn:outgoing>Flow_172ehon</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_172ehon" sourceRef="Activity_2" targetRef="Activity_3" />
+    <bpmn:userTask id="Activity_3" name="Provide required docs">
+      <bpmn:incoming>Flow_172ehon</bpmn:incoming>
+      <bpmn:outgoing>Flow_1umj7e3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1umj7e3" sourceRef="Activity_3" targetRef="Activity_4" />
+    <bpmn:userTask id="Activity_4" name="verify">
+      <bpmn:incoming>Flow_1umj7e3</bpmn:incoming>
+      <bpmn:outgoing>Flow_0r7ht6q</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="Activity_0eggfab" name="choose procedure">
+      <bpmn:incoming>Flow_0r7ht6q</bpmn:incoming>
+      <bpmn:outgoing>Flow_01bm9ns</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0r7ht6q" sourceRef="Activity_4" targetRef="Activity_0eggfab" />
+    <bpmn:endEvent id="Event_02t16zm">
+      <bpmn:incoming>Flow_01bm9ns</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_01bm9ns" sourceRef="Activity_0eggfab" targetRef="Event_02t16zm" />
+    <bpmn:startEvent id="StartEvent_1" name="want to make a registration request">
+      <bpmn:outgoing>Flow_0tic5d0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0tic5d0" sourceRef="StartEvent_1" targetRef="Activity_0" />
+    <bpmn:sequenceFlow id="Flow_1i24494" sourceRef="Activity_0" targetRef="Activity_1" />
+    <bpmn:userTask id="Activity_0" name="provide unique ID" camunda:formKey="embedded:/forms/start-form.html">
+      <bpmn:incoming>Flow_0tic5d0</bpmn:incoming>
+      <bpmn:outgoing>Flow_1i24494</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:error id="Error_118ulwx" name="Fall_Overboard" errorCode="Fall_Overboard" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="demande-process">
+      <bpmndi:BPMNShape id="UserTask_08mft2c_di" bpmnElement="Activity_1">
+        <dc:Bounds x="440" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qwfgfs_di" bpmnElement="Activity_2">
+        <dc:Bounds x="610" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13qjn6v_di" bpmnElement="Activity_3">
+        <dc:Bounds x="790" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0isneo4_di" bpmnElement="Activity_4">
+        <dc:Bounds x="980" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0eggfab_di" bpmnElement="Activity_0eggfab">
+        <dc:Bounds x="1170" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02t16zm_di" bpmnElement="Event_02t16zm">
+        <dc:Bounds x="1362" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="172" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="154" y="145" width="74" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dvdyii_di" bpmnElement="Activity_0">
+        <dc:Bounds x="260" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0q16z7m_di" bpmnElement="Flow_0q16z7m">
+        <di:waypoint x="540" y="120" />
+        <di:waypoint x="610" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_172ehon_di" bpmnElement="Flow_172ehon">
+        <di:waypoint x="710" y="120" />
+        <di:waypoint x="790" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1umj7e3_di" bpmnElement="Flow_1umj7e3">
+        <di:waypoint x="890" y="120" />
+        <di:waypoint x="980" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0r7ht6q_di" bpmnElement="Flow_0r7ht6q">
+        <di:waypoint x="1080" y="120" />
+        <di:waypoint x="1170" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01bm9ns_di" bpmnElement="Flow_01bm9ns">
+        <di:waypoint x="1270" y="120" />
+        <di:waypoint x="1362" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tic5d0_di" bpmnElement="Flow_0tic5d0">
+        <di:waypoint x="208" y="120" />
+        <di:waypoint x="260" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i24494_di" bpmnElement="Flow_1i24494">
+        <di:waypoint x="360" y="120" />
+        <di:waypoint x="440" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
